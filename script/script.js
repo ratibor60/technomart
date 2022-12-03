@@ -1,25 +1,24 @@
 // modalFeedback
 
-const modalFeedback = document.querySelector('.modal-feedback');
-const buttonFeedback = document.querySelector('.write-us');
-const buttonClose = document.querySelector('.modal-close');
-const loginForm = modalFeedback.querySelector('.feedback-form');
-const formName = modalFeedback.querySelector('.form-name-user');
-const emailForm = modalFeedback.querySelector('.form-email');
+const modalFeedback = document.querySelector(".modal-feedback");
+const buttonFeedback = document.querySelector(".write-us");
+const buttonClose = document.querySelector(".modal-close");
+const loginForm = document.querySelector(".feedback-form");
+const formName = document.querySelector(".form-name-user");
+const emailForm = document.querySelector(".form-email");
 
 let isStorageSupport = true;
 let storage = "";
 
 try {
-  storage = localStorage.getItem('name');
+  storage = localStorage.getItem("name");
 } catch (err) {
   isStorageSupport = false;
 }
 
-
-buttonFeedback.addEventListener ('click', function (evt) {
+buttonFeedback.addEventListener("click", function (evt) {
   evt.preventDefault();
-  modalFeedback.classList.add('modal-show');
+  modalFeedback.classList.add("modal-show");
 
   if (storage) {
     formName.value = storage;
@@ -27,87 +26,85 @@ buttonFeedback.addEventListener ('click', function (evt) {
   } else {
     formName.focus();
   }
-
 });
 
-buttonClose.addEventListener ('click', function (evt) {
+buttonClose.addEventListener("click", function (evt) {
   evt.preventDefault();
-  modalFeedback.classList.remove('modal-show');
-  modalFeedback.classList.remove('modal-error');
+  modalFeedback.classList.remove("modal-show");
+  modalFeedback.classList.remove("modal-error");
 });
 
-loginForm.addEventListener ('submit', function (evt) {
+loginForm.addEventListener("submit", function (evt) {
   if (!formName.value || !emailForm.value) {
-  evt.preventDefault();
-  modalFeedback.classList.remove('modal-error');
-  modalFeedback.offsetWidth = modalFeedback.offsetWidth;
-  modalFeedback.classList.add('modal-error');
+    evt.preventDefault();
+    modalFeedback.classList.remove("modal-error");
+    modalFeedback.offsetWidth = modalFeedback.offsetWidth;
+    modalFeedback.classList.add("modal-error");
   } else {
     if (isStorageSupport) {
-    localStorage.setItem('name', formName.value);
+      localStorage.setItem("name", formName.value);
     }
   }
 });
 
-window.addEventListener ('keydown', function (evt) {
+window.addEventListener("keydown", function (evt) {
   if (evt.keyCode === 27) {
-    if (modalFeedback.classList.contains('modal-show')) {
+    if (modalFeedback.classList.contains("modal-show")) {
       evt.preventDefault();
-      modalFeedback.classList.remove('modal-show');
-      modalFeedback.classList.remove('modal-error');
+      modalFeedback.classList.remove("modal-show");
+      modalFeedback.classList.remove("modal-error");
     }
   }
 });
-
 
 // modalMap
 
-const mapLink = document.querySelector('.contacts-map');
-const modalMap = document.querySelector('.modal-map');
-const mapClose = modalMap.querySelector('.modal-close');
+const mapLink = document.querySelector(".contacts-map");
+const modalMap = document.querySelector(".modal-map");
+const mapClose = modalMap.querySelector(".modal-close");
 
-mapLink.addEventListener ('click', function (evt) {
+mapLink.addEventListener("click", function (evt) {
   evt.preventDefault();
-  modalMap.classList.add('modal-show');
+  modalMap.classList.add("modal-show");
 });
 
-mapClose.addEventListener ('click', function (evt) {
+mapClose.addEventListener("click", function (evt) {
   evt.preventDefault();
-  modalMap.classList.remove('modal-show');
+  modalMap.classList.remove("modal-show");
 });
 
-window.addEventListener ('keydown', function (evt) {
-
+window.addEventListener("keydown", function (evt) {
   if (evt.keyCode === 27) {
-    if (modalMap.classList.contains('modal-show')) {
+    if (modalMap.classList.contains("modal-show")) {
       evt.preventDefault();
-      modalMap.classList.remove('modal-show');
+      modalMap.classList.remove("modal-show");
     }
   }
-})
+});
 
 //modalCart
 
-const buttonBuy = document.querySelector('.button-buy');
-const modalCart = document.querySelector('.modal-cart');
-const cartClose = modalCart.querySelector('.modal-close');
+const buttonBuy = document.querySelectorAll(".button-buy");
+const modalCart = document.querySelector(".modal-cart");
+const cartClose = modalCart.querySelector(".modal-close");
 
-buttonBuy.addEventListener ('click', function (evt) {
-  evt.preventDefault();
-  modalCart.classList.add('modal-show');
+buttonBuy.forEach((btn) => {
+  btn.addEventListener("click", (evt) => {
+    evt.preventDefault();
+    modalCart.classList.add("modal-show");
+  });
+
+  cartClose.addEventListener("click", (evt) => {
+    evt.preventDefault();
+    modalCart.classList.remove("modal-show");
+  });
 });
 
-cartClose.addEventListener ('click', function (evt) {
-  evt.preventDefault();
-  modalCart.classList.remove('modal-show');
-});
-
-window.addEventListener ('keydown', function (evt) {
-
+window.addEventListener("keydown", function (evt) {
   if (evt.keyCode === 27) {
-    if (modalCart.classList.contains('modal-show')) {
+    if (modalCart.classList.contains("modal-show")) {
       evt.preventDefault();
-      modalCart.classList.remove('modal-show');
+      modalCart.classList.remove("modal-show");
     }
   }
-})
+});
