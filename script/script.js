@@ -89,15 +89,13 @@ const modalCart = document.querySelector(".modal-cart");
 const cartClose = modalCart.querySelector(".modal-close");
 
 buttonBuy.forEach((btn) => {
-  btn.addEventListener("click", (evt) => {
-    evt.preventDefault();
+  btn.addEventListener("click", () => {
     modalCart.classList.add("modal-show");
   });
+});
 
-  cartClose.addEventListener("click", (evt) => {
-    evt.preventDefault();
-    modalCart.classList.remove("modal-show");
-  });
+cartClose.addEventListener("click", () => {
+  modalCart.classList.remove("modal-show");
 });
 
 window.addEventListener("keydown", function (evt) {
